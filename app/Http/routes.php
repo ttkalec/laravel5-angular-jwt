@@ -1,21 +1,44 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+use App\User;
+use Illuminate\Http\Response as HttpResponse;
 
-Route::get('/', 'SpaController@index');
+//Route::controllers([
+//	'auth' => 'Auth\AuthController',
+//	'password' => 'Auth\PasswordController',
+//]);
 
-Route::get('home', 'HomeController@index');
+Route::get('/', function () {
+    return view('spa');
+});
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::post('/signup', function () {
+    // Validate input
+
+    $credentials = Input::only('email', 'password');
+    $user = User::create($credentials);
+
+    $token = JWTAuth::fromUser($user);
+    return Response::json(compact('token'));
+});
+
+Route::post('/signin', function () {
+    $credentials = Input::only('email', 'password');
+
+    if ( ! $token = JWTAuth::attempt($credentials) )
+    {
+        return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
+    }
+
+    return Response::json(compact('token'));
+});
+
+Route::get('/restricted', ['before' => 'jwt-auth', function () {
+    $token = JWTAuth::getToken();
+    $user = JWTAuth::toUser($token);
+
+    return Response::json(['data' => [
+        'email' => $user->email,
+        'registered_at' => $user->created_at->toDateTimeString()
+    ]]);
+}]);

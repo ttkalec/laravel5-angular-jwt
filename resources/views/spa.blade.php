@@ -10,13 +10,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap.superhero.min.css">
     <link rel="stylesheet" href="/lib/loading-bar.css">
-
-    <style>
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/app.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,7 +34,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li data-ng-show="token"><a ng-href="#/me">Me</a></li>
+                <li data-ng-show="token"><a ng-href="#/restricted">Restricted area</a></li>
                 <li data-ng-hide="token"><a ng-href="#/signin">Signin</a></li>
                 <li data-ng-hide="token"><a ng-href="#/signup">Signup</a></li>
                 <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>

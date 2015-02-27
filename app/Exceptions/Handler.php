@@ -2,6 +2,7 @@
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler {
 
@@ -11,7 +12,9 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
+		'Symfony\Component\HttpKernel\Exception\HttpException',
+		'Tymon\JWTAuth\Exceptions\TokenInvalidException',
+		'Tymon\JWTAuth\Exceptions\TokenExpiredException'
 	];
 
 	/**
@@ -36,6 +39,15 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException)
+		{
+			return response(['Token is invalid'], 401);
+		}
+		if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException)
+		{
+			return response(['Token is invalid'], 401);
+		}
+
 		return parent::render($request, $e);
 	}
 

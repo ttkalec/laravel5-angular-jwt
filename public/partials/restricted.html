@@ -1,0 +1,16 @@
+<div class="row" >
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Restricted content</strong>
+            </div>
+            <div class="panel-body" data-ng-hide="data">
+                <p>Fetching data...</p>
+            </div>
+            <div class="panel-body" data-ng-show="data">
+                <p>Email: {{data.email}}</p>
+                <p>Registered at: {{data.registered_at}}</p>
+            </div>
+        </div>
+    </div>
+</div>

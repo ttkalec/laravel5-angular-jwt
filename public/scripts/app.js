@@ -20,9 +20,9 @@ angular.module('angularRestfulAuth', [
             templateUrl: 'partials/signup.html',
             controller: 'HomeCtrl'
         }).
-        when('/me', {
-            templateUrl: 'partials/me.html',
-            controller: 'HomeCtrl'
+        when('/restricted', {
+            templateUrl: 'partials/restricted.html',
+            controller: 'RestrictedCtrl'
         }).
         otherwise({
             redirectTo: '/'
