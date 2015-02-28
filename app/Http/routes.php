@@ -3,18 +3,11 @@
 use App\User;
 use Illuminate\Http\Response as HttpResponse;
 
-//Route::controllers([
-//	'auth' => 'Auth\AuthController',
-//	'password' => 'Auth\PasswordController',
-//]);
-
 Route::get('/', function () {
     return view('spa');
 });
 
 Route::post('/signup', function () {
-    // Validate input
-
     $credentials = Input::only('email', 'password');
     $user = User::create($credentials);
 
@@ -42,3 +35,20 @@ Route::get('/restricted', ['before' => 'jwt-auth', function () {
         'registered_at' => $user->created_at->toDateTimeString()
     ]]);
 }]);
+
+Route::group(['domain' => 'api.jwt.dev', 'prefix' => 'v1', 'before' => 'jwt-auth'], function()
+{
+    Route::get('/restricted', function()
+    {
+        try
+        {
+            $user = JWTAuth::parseToken()->toUser();
+        }
+        catch(Exception $e)
+        {
+            return Response::json(['error' => $e->getMessage()], HttpResponse::HTTP_UNAUTHORIZED);
+        }
+
+        return ['data' => 'This has come from a dedicated API subdomain with restricted access.'];
+    });
+});

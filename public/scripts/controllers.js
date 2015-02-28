@@ -57,5 +57,10 @@ angular.module('angularRestfulAuth')
             $scope.data = res.data;
         }, function () {
             $rootScope.error = 'Failed to fetch restricted content.';
-        })
+        });
+        Main.api(function (res) {
+            $scope.api = res.data;
+        }, function () {
+            $rootScope.error = 'Failed to fetch restricted API content.';
+        });
     }]);

@@ -12,18 +12,11 @@ return [
     ],
 
     'paths' => [
-        'api/*' => [
+        'v1/*' => [
             'allowedOrigins' => ['*'],
             'allowedHeaders' => ['*'],
             'allowedMethods' => ['*'],
             'maxAge' => 3600,
-        ],
-        '*' => [
-            'allowedOrigins' => ['*'],
-            'allowedHeaders' => ['Content-Type'],
-            'allowedMethods' => ['POST', 'PUT', 'GET', 'DELETE'],
-            'maxAge' => 3600,
-            'hosts' => ['api.*'],
         ],
     ],
 ];
