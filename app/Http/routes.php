@@ -36,7 +36,7 @@ Route::get('/restricted', ['before' => 'jwt-auth', function () {
     ]]);
 }]);
 
-Route::group(['domain' => 'api.jwt.dev', 'prefix' => 'v1', 'before' => 'jwt-auth'], function()
+Route::group(['domain' => 'api.jwt.dev', 'prefix' => 'v1'], function()
 {
     Route::get('/restricted', function()
     {
