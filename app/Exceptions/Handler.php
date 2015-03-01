@@ -13,8 +13,6 @@ class Handler extends ExceptionHandler {
 	 */
 	protected $dontReport = [
 		'Symfony\Component\HttpKernel\Exception\HttpException',
-		'Tymon\JWTAuth\Exceptions\TokenInvalidException',
-		'Tymon\JWTAuth\Exceptions\TokenExpiredException'
 	];
 
 	/**
