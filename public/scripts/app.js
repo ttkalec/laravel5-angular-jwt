@@ -10,19 +10,19 @@
             $routeProvider.
                 when('/', {
                     templateUrl: 'partials/home.html',
-                    controller: 'HomeCtrl'
+                    controller: 'HomeController'
                 }).
                 when('/signin', {
                     templateUrl: 'partials/signin.html',
-                    controller: 'HomeCtrl'
+                    controller: 'HomeController'
                 }).
                 when('/signup', {
                     templateUrl: 'partials/signup.html',
-                    controller: 'HomeCtrl'
+                    controller: 'HomeController'
                 }).
                 when('/restricted', {
                     templateUrl: 'partials/restricted.html',
-                    controller: 'RestrictedCtrl'
+                    controller: 'RestrictedController'
                 }).
                 otherwise({
                     redirectTo: '/'

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app')
-        .controller('HomeCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'Main',
+        .controller('HomeController', ['$rootScope', '$scope', '$location', '$localStorage', 'Main',
             function ($rootScope, $scope, $location, $localStorage, Main) {
                 $scope.signin = function () {
                     var formData = {
@@ -11,12 +11,8 @@
                     };
 
                     Main.signin(formData, function (res) {
-                        if (res.type == false) {
-                            alert(res.data)
-                        } else {
-                            $localStorage.token = res.token;
-                            window.location = "/";
-                        }
+                        $localStorage.token = res.token;
+                        window.location = "/";
                     }, function () {
                         $rootScope.error = 'Invalid credentials.';
                     })
@@ -29,12 +25,8 @@
                     };
 
                     Main.signup(formData, function (res) {
-                        if (res.type == false) {
-                            alert(res.data)
-                        } else {
-                            $localStorage.token = res.token;
-                            window.location = "/"
-                        }
+                        $localStorage.token = res.token;
+                        window.location = "/"
                     }, function () {
                         $rootScope.error = 'Failed to signup';
                     })
@@ -50,7 +42,7 @@
                 $scope.token = $localStorage.token;
             }])
 
-        .controller('RestrictedCtrl', ['$rootScope', '$scope', '$location', 'Main', function ($rootScope, $scope, $location, Main) {
+        .controller('RestrictedController', ['$rootScope', '$scope', '$location', 'Main', function ($rootScope, $scope, $location, Main) {
             Main.restricted(function (res) {
                 $scope.data = res.data;
             }, function () {
