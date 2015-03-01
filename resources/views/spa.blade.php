@@ -42,6 +42,11 @@
         </div>
     </div>
     <div class="container" ng-view=""></div>
+    <div class="footer">
+        <div class="container">
+            <p class="muted credit">Example by <a href="http://www.toptal.com/resume/tino-tkalec" title="Tino Tkalec">Tino Tkalec</a></p>
+        </div>
+    </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
