@@ -4,16 +4,18 @@
     angular.module('app')
         .controller('HomeController', ['$rootScope', '$scope', '$location', '$localStorage', 'Main',
             function ($rootScope, $scope, $location, $localStorage, Main) {
+                function successAuth(res) {
+                    $localStorage.token = res.token;
+                    window.location = "/";
+                }
+
                 $scope.signin = function () {
                     var formData = {
                         email: $scope.email,
                         password: $scope.password
                     };
 
-                    Main.signin(formData, function (res) {
-                        $localStorage.token = res.token;
-                        window.location = "/";
-                    }, function () {
+                    Main.signin(formData, successAuth, function () {
                         $rootScope.error = 'Invalid credentials.';
                     })
                 };
@@ -24,10 +26,7 @@
                         password: $scope.password
                     };
 
-                    Main.signup(formData, function (res) {
-                        $localStorage.token = res.token;
-                        window.location = "/"
-                    }, function () {
+                    Main.signup(formData, successAuth, function () {
                         $rootScope.error = 'Failed to signup';
                     })
                 };
@@ -35,8 +34,6 @@
                 $scope.logout = function () {
                     Main.logout(function () {
                         window.location = "/"
-                    }, function () {
-                        alert("Failed to logout!");
                     });
                 };
                 $scope.token = $localStorage.token;

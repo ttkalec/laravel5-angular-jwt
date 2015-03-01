@@ -36,7 +36,7 @@
                     <li data-ng-show="token"><a ng-href="#/restricted">Restricted area</a></li>
                     <li data-ng-hide="token"><a ng-href="#/signin">Signin</a></li>
                     <li data-ng-hide="token"><a ng-href="#/signup">Signup</a></li>
-                    <li data-ng-show="token"><a ng-click="logout()">Logout</a></li>
+                    <li data-ng-show="token"><a ng-href="#/" ng-click="logout()">Logout</a></li>
                 </ul>
             </div>
         </div>
