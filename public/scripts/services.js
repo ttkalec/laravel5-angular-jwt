@@ -3,10 +3,6 @@
 
     angular.module('app')
         .factory('Auth', ['$http', '$localStorage', 'urls', function ($http, $localStorage, urls) {
-            function changeUser(user) {
-                angular.extend(currentUser, user);
-            }
-
             function urlBase64Decode(str) {
                 var output = str.replace('-', '+').replace('_', '/');
                 switch (output.length % 4) {
@@ -24,7 +20,7 @@
                 return window.atob(output);
             }
 
-            function getUserFromToken() {
+            function getClaimsFromToken() {
                 var token = $localStorage.token;
                 var user = {};
                 if (typeof token !== 'undefined') {
@@ -34,7 +30,7 @@
                 return user;
             }
 
-            var currentUser = getUserFromToken();
+            var tokenClaims = getClaimsFromToken();
 
             return {
                 signup: function (data, success, error) {
@@ -44,9 +40,12 @@
                     $http.post(urls.BASE + '/signin', data).success(success).error(error)
                 },
                 logout: function (success) {
-                    changeUser({});
+                    tokenClaims = {};
                     delete $localStorage.token;
                     success();
+                },
+                getTokenClaims: function () {
+                    return tokenClaims;
                 }
             };
         }

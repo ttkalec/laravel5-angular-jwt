@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div data-ng-hide="token" class="col-md-6">
-                    <a href="#/signup" class="btn btn-default btn-primary margin-right" role="button">Signup</a>
+                    <a href="#/signup" class="btn btn-default btn-primary margin-right" role="button">Sign up</a>
                     or
                     <a href="#/signin" class="btn btn-default btn-primary margin-left" role="button">Sign in</a>
                 </div>
@@ -14,5 +14,17 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div data-ng-show="token" class="row">
+    <div class="col-lg-4">
+        <p>You are now logged in and have received JWT from the backend.</p>
+        <p>Here is the claims data:</p>
+        <table class="table table-bordered table-striped">
+            <tr data-ng-repeat="(key, value) in tokenClaims">
+                <td> {{ key }} </td>
+                <td> {{ value }} </td>
+            </tr>
+        </table>
     </div>
 </div>

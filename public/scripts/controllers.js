@@ -37,6 +37,7 @@
                     });
                 };
                 $scope.token = $localStorage.token;
+                $scope.tokenClaims = Auth.getTokenClaims();
             }])
 
         .controller('RestrictedController', ['$rootScope', '$scope', 'Data', function ($rootScope, $scope, Data) {
