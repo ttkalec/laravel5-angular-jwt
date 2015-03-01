@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app')
-        .controller('HomeController', ['$rootScope', '$scope', '$location', '$localStorage', 'Main',
-            function ($rootScope, $scope, $location, $localStorage, Main) {
+        .controller('HomeController', ['$rootScope', '$scope', '$location', '$localStorage', 'Auth',
+            function ($rootScope, $scope, $location, $localStorage, Auth) {
                 function successAuth(res) {
                     $localStorage.token = res.token;
                     window.location = "/";
@@ -15,7 +15,7 @@
                         password: $scope.password
                     };
 
-                    Main.signin(formData, successAuth, function () {
+                    Auth.signin(formData, successAuth, function () {
                         $rootScope.error = 'Invalid credentials.';
                     })
                 };
@@ -26,26 +26,26 @@
                         password: $scope.password
                     };
 
-                    Main.signup(formData, successAuth, function () {
+                    Auth.signup(formData, successAuth, function () {
                         $rootScope.error = 'Failed to signup';
                     })
                 };
 
                 $scope.logout = function () {
-                    Main.logout(function () {
+                    Auth.logout(function () {
                         window.location = "/"
                     });
                 };
                 $scope.token = $localStorage.token;
             }])
 
-        .controller('RestrictedController', ['$rootScope', '$scope', '$location', 'Main', function ($rootScope, $scope, $location, Main) {
-            Main.restricted(function (res) {
+        .controller('RestrictedController', ['$rootScope', '$scope', 'Data', function ($rootScope, $scope, Data) {
+            Data.getRestrictedData(function (res) {
                 $scope.data = res.data;
             }, function () {
                 $rootScope.error = 'Failed to fetch restricted content.';
             });
-            Main.api(function (res) {
+            Data.getApiData(function (res) {
                 $scope.api = res.data;
             }, function () {
                 $rootScope.error = 'Failed to fetch restricted API content.';

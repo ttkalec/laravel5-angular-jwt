@@ -6,6 +6,10 @@
         'ngRoute',
         'angular-loading-bar'
     ])
+        .constant('urls', {
+            BASE: 'http://jwt.dev:8000',
+            BASE_API: 'http://api.jwt.dev:8000/v1'
+        })
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.
                 when('/', {
