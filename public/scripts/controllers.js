@@ -26,8 +26,8 @@
                         password: $scope.password
                     };
 
-                    Auth.signup(formData, successAuth, function () {
-                        $rootScope.error = 'Failed to signup';
+                    Auth.signup(formData, successAuth, function (res) {
+                        $rootScope.error = res.error || 'Failed to sign up.';
                     })
                 };
 

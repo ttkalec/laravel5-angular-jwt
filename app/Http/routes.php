@@ -15,13 +15,14 @@ Route::get('/', function () {
  */
 Route::post('/signup', function () {
     $credentials = Input::only('email', 'password');
-    $user = User::create($credentials);
 
     try {
-        $token = JWTAuth::fromUser($user);
+        $user = User::create($credentials);
     } catch (Exception $e) {
         return Response::json(['error' => 'User already exists.'], HttpResponse::HTTP_CONFLICT);
     }
+
+    $token = JWTAuth::fromUser($user);
 
     return Response::json(compact('token'));
 });
