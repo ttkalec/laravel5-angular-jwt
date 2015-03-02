@@ -7,8 +7,8 @@
         'angular-loading-bar'
     ])
         .constant('urls', {
-            BASE: 'http://laravel-angular-jwt.herokuapp.com',
-            BASE_API: 'http://laravel-angular-jwt-api.herokuapp.com/v1'
+            BASE: 'http://jwt.dev:8000',
+            BASE_API: 'http://api.jwt.dev:8000/v1'
         })
         .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
             $routeProvider.
