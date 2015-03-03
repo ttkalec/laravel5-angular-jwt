@@ -43,6 +43,7 @@
                     },
                     'responseError': function (response) {
                         if (response.status === 401 || response.status === 403) {
+                            delete $localStorage.token;
                             $location.path('/signin');
                         }
                         return $q.reject(response);
@@ -50,5 +51,13 @@
                 };
             }]);
         }
-        ]);
+        ]).run(function($rootScope, $location, $localStorage) {
+            $rootScope.$on( "$routeChangeStart", function(event, next) {
+                if ($localStorage.token == null) {
+                    if ( next.templateUrl === "partials/restricted.html") {
+                        $location.path("/signin");
+                    }
+                }
+            });
+        });
 })();
