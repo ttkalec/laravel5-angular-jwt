@@ -4,8 +4,7 @@ This is a basic Laravel 5 app that shows how to use the most basic JWT authentic
 
 ## Note
 This app is not meant to be used in Production environment.  
-It a very basic example, that lacks any kind of input validation, handling of expired tokens, local storage fallback to cookies or any other
-storage.
+It's a very basic example, that lacks any kind of input validation, handling of expired tokens, local storage fallback to cookies or any other storage.
 
 ## Installation
 - Clone the repository (`git clone git@github.com:ttkalec/laravel5-angular-jwt.git`)
